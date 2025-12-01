@@ -1,12 +1,16 @@
 :root {
-    --primary-teal: #008080;
-    --primary-teal-light: #20B2AA;
-    --secondary-gray: #f4f4f4;
+    /* BioSync Brand Colors */
+    --primary-navy: #0d2c54; /* Navy Blue from logo text/flask bottom */
+    --primary-green: #6db33f; /* Green from logo top */
+    --primary-teal: #0d2c54; /* Keeping variable name but mapping to Navy for backward compat/primary use */
+    --primary-teal-light: #6db33f; /* Mapping light teal to Green */
+
+    --secondary-gray: #f4f6f8; /* Softer gray */
     --text-dark: #333333;
-    --text-light: #666666;
+    --text-light: #555555;
     --white: #FFFFFF;
-    --code-bg: #2d2d2d;
-    --header-height: 70px;
+    --code-bg: #282c34;
+    --header-height: 80px;
 }
 
 * {
@@ -47,7 +51,7 @@ header {
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--primary-teal);
+    color: var(--primary-navy);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -66,22 +70,22 @@ header {
 }
 
 .nav-links a:hover, .nav-links a.active {
-    color: var(--primary-teal);
+    color: var(--primary-green);
 }
 
 .lang-toggle-btn {
     background: none;
-    border: 1px solid var(--primary-teal);
-    color: var(--primary-teal);
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
     padding: 0.3rem 0.8rem;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s;
 }
 
 .lang-toggle-btn:hover {
-    background-color: var(--primary-teal);
+    background-color: var(--primary-green);
     color: var(--white);
 }
 
@@ -99,13 +103,13 @@ section {
 }
 
 h1, h2, h3 {
-    color: var(--primary-teal);
+    color: var(--primary-navy);
     margin-bottom: 1rem;
 }
 
-h1 { font-size: 2.5rem; border-bottom: 2px solid var(--secondary-gray); padding-bottom: 0.5rem; }
-h2 { font-size: 2rem; margin-top: 2rem; }
-h3 { font-size: 1.5rem; margin-top: 1.5rem; color: var(--text-dark); }
+h1 { font-size: 2.5rem; border-bottom: 2px solid var(--secondary-gray); padding-bottom: 0.5rem; color: var(--primary-navy); }
+h2 { font-size: 2rem; margin-top: 2rem; color: var(--primary-navy); }
+h3 { font-size: 1.5rem; margin-top: 1.5rem; color: var(--primary-navy); }
 
 p {
     margin-bottom: 1rem;
@@ -121,15 +125,18 @@ p {
 }
 
 .card {
-    background: var(--secondary-gray);
+    background: var(--white);
     padding: 2rem;
-    border-radius: 8px;
-    border-left: 5px solid var(--primary-teal);
-    transition: transform 0.2s;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    border-left: 5px solid var(--primary-green);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
 }
 
 /* AP to WiFi Flow */
@@ -152,12 +159,13 @@ p {
     top: 0;
     width: 2rem;
     height: 2rem;
-    background-color: var(--primary-teal);
+    background-color: var(--primary-green);
     color: var(--white);
     text-align: center;
     line-height: 2rem;
     border-radius: 50%;
     font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* API Documentation */
@@ -213,7 +221,7 @@ p {
 }
 
 .params-table th {
-    color: var(--primary-teal);
+    color: var(--primary-navy);
 }
 
 /* Code Blocks */
@@ -252,7 +260,7 @@ code {
 }
 
 .tab-btn.active {
-    background: var(--primary-teal);
+    background: var(--primary-navy);
     color: white;
 }
 
