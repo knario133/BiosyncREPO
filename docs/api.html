@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - BioSync IoT</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="../index.html" class="logo">BioSync IoT</a>
+        <nav class="nav-links">
+            <a href="../index.html" data-site-lang="en">Home</a>
+            <a href="../index.html" data-site-lang="es" style="display:none;">Inicio</a>
+
+            <a href="api.html" class="active" data-site-lang="en">API Docs</a>
+            <a href="api.html" class="active" data-site-lang="es" style="display:none;">Documentación API</a>
+
+            <a href="automation.html" data-site-lang="en">Automation</a>
+            <a href="automation.html" data-site-lang="es" style="display:none;">Automatización</a>
+
+            <button id="langToggle" class="lang-toggle-btn">ES</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section>
+        <h1 data-site-lang="en">API Documentation</h1>
+        <h1 data-site-lang="es" style="display:none;">Documentación API</h1>
+        <p data-site-lang="en">Control your devices programmatically using standard HTTP requests. All responses are in JSON format.</p>
+        <p data-site-lang="es" style="display:none;">Controle sus dispositivos programáticamente usando solicitudes HTTP estándar. Todas las respuestas están en formato JSON.</p>
+    </section>
+
+    <!-- BioLighting Section -->
+    <section>
+        <h2>BioLighting API</h2>
+
+        <!-- GET /api/light -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="url">/api/light</span>
+            </div>
+            <div class="endpoint-body">
+                <p data-site-lang="en">Get current light status.</p>
+                <p data-site-lang="es" style="display:none;">Obtener estado actual de la luz.</p>
+
+                <h4 data-site-lang="en">Response</h4>
+                <h4 data-site-lang="es" style="display:none;">Respuesta</h4>
+                <pre><code class="language-json">{
+  "r": 255,
+  "g": 100,
+  "b": 0,
+  "intensity": 80
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- POST /api/light -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method post">POST</span>
+                <span class="url">/api/light</span>
+            </div>
+            <div class="endpoint-body">
+                <p data-site-lang="en">Set light color and intensity.</p>
+                <p data-site-lang="es" style="display:none;">Establecer color e intensidad de la luz.</p>
+
+                <h4 data-site-lang="en">Payload</h4>
+                <h4 data-site-lang="es" style="display:none;">Cuerpo de la Petición</h4>
+                <table class="params-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>r</td>
+                        <td>int (0-255)</td>
+                        <td>Red component</td>
+                    </tr>
+                    <tr>
+                        <td>g</td>
+                        <td>int (0-255)</td>
+                        <td>Green component</td>
+                    </tr>
+                    <tr>
+                        <td>b</td>
+                        <td>int (0-255)</td>
+                        <td>Blue component</td>
+                    </tr>
+                    <tr>
+                        <td>intensity</td>
+                        <td>int (0-100)</td>
+                        <td>Brightness percentage</td>
+                    </tr>
+                </table>
+
+                <h4 data-site-lang="en">Code Examples</h4>
+                <h4 data-site-lang="es" style="display:none;">Ejemplos de Código</h4>
+
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="python">Python</button>
+                        <button class="tab-btn" data-tab="js">JavaScript</button>
+                        <button class="tab-btn" data-tab="java">Java</button>
+                        <button class="tab-btn" data-tab="csharp">C#</button>
+                        <button class="tab-btn" data-tab="ts">TypeScript</button>
+                        <button class="tab-btn" data-tab="go">Go</button>
+                        <button class="tab-btn" data-tab="cpp">C++</button>
+                        <button class="tab-btn" data-tab="php">PHP</button>
+                        <button class="tab-btn" data-tab="swift">Swift</button>
+                        <button class="tab-btn" data-tab="c">C</button>
+                    </div>
+
+                    <div class="tab-content active" data-lang="python">
+<pre><code class="language-python">import requests
+
+url = "http://<DEVICE_IP>/api/light"
+payload = {"r": 255, "g": 100, "b": 50, "intensity": 100}
+
+response = requests.post(url, json=payload)
+print(response.json())</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="js">
+<pre><code class="language-javascript">const url = "http://<DEVICE_IP>/api/light";
+const payload = { r: 255, g: 100, b: 50, intensity: 100 };
+
+fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+})
+.then(res => res.json())
+.then(data => console.log(data));</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="java">
+<pre><code class="language-java">import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+
+public class BioControl {
+    public static void main(String[] args) throws Exception {
+        String json = "{\"r\":255,\"g\":100,\"b\":50,\"intensity\":100}";
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("http://<DEVICE_IP>/api/light"))
+            .header("Content-Type", "application/json")
+            .POST(HttpRequest.BodyPublishers.ofString(json))
+            .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="csharp">
+<pre><code class="language-csharp">using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+
+var client = new HttpClient();
+var payload = new { r = 255, g = 100, b = 50, intensity = 100 };
+var json = JsonSerializer.Serialize(payload);
+var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+var response = await client.PostAsync("http://<DEVICE_IP>/api/light", content);
+Console.WriteLine(await response.Content.ReadAsStringAsync());</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="ts">
+<pre><code class="language-typescript">import axios from 'axios';
+
+interface LightConfig {
+    r: number;
+    g: number;
+    b: number;
+    intensity: number;
+}
+
+const config: LightConfig = { r: 255, g: 100, b: 50, intensity: 100 };
+
+axios.post('http://<DEVICE_IP>/api/light', config)
+    .then(res => console.log(res.data));</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="go">
+<pre><code class="language-go">package main
+
+import (
+    "bytes"
+    "net/http"
+    "fmt"
+)
+
+func main() {
+    json := []byte(`{"r":255,"g":100,"b":50,"intensity":100}`)
+    resp, err := http.Post("http://<DEVICE_IP>/api/light", "application/json", bytes.NewBuffer(json))
+    if err != nil {
+        panic(err)
+    }
+    defer resp.Body.Close()
+    fmt.Println("Status:", resp.Status)
+}</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="cpp">
+<pre><code class="language-cpp">#include <curl/curl.h>
+#include <string>
+
+int main() {
+    CURL *curl;
+    CURLcode res;
+
+    curl_global_init(CURL_GLOBAL_ALL);
+    curl = curl_easy_init();
+
+    if(curl) {
+        struct curl_slist *headers = NULL;
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+
+        curl_easy_setopt(curl, CURLOPT_URL, "http://<DEVICE_IP>/api/light");
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "{\"r\":255,\"g\":100,\"b\":50,\"intensity\":100}");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+        res = curl_easy_perform(curl);
+
+        curl_easy_cleanup(curl);
+    }
+    return 0;
+}</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="php">
+<pre><code class="language-php"><?php
+$url = 'http://<DEVICE_IP>/api/light';
+$data = array('r' => 255, 'g' => 100, 'b' => 50, 'intensity' => 100);
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$result = curl_exec($ch);
+curl_close($ch);
+echo $result;
+?></code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="swift">
+<pre><code class="language-swift">import Foundation
+
+let url = URL(string: "http://<DEVICE_IP>/api/light")!
+var request = URLRequest(url: url)
+request.httpMethod = "POST"
+request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+let body: [String: Any] = ["r": 255, "g": 100, "b": 50, "intensity": 100]
+request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+
+let task = URLSession.shared.dataTask(with: request) { data, _, _ in
+    if let data = data {
+        print(String(data: data, encoding: .utf8)!)
+    }
+}
+task.resume()</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="c">
+<pre><code class="language-c">#include <stdio.h>
+#include <curl/curl.h>
+
+int main(void) {
+    CURL *curl;
+    CURLcode res;
+
+    curl_global_init(CURL_GLOBAL_ALL);
+    curl = curl_easy_init();
+
+    if(curl) {
+        struct curl_slist *headers = NULL;
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+
+        curl_easy_setopt(curl, CURLOPT_URL, "http://<DEVICE_IP>/api/light");
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "{\"r\":255,\"g\":100,\"b\":50,\"intensity\":100}");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+        res = curl_easy_perform(curl);
+
+        curl_easy_cleanup(curl);
+    }
+    curl_global_cleanup();
+    return 0;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IAShaker Section -->
+    <section>
+        <h2>IAShakerV2 API</h2>
+
+        <!-- GET /rpm -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="url">/rpm?value={rpm}</span>
+            </div>
+            <div class="endpoint-body">
+                <p data-site-lang="en">Set the target RPM speed.</p>
+                <p data-site-lang="es" style="display:none;">Establecer la velocidad RPM objetivo.</p>
+
+                <h4 data-site-lang="en">Query Parameters</h4>
+                <h4 data-site-lang="es" style="display:none;">Parámetros de Consulta</h4>
+                <table class="params-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>value</td>
+                        <td>float (0-510)</td>
+                        <td>Target RPM value</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- GET /status -->
+        <div class="endpoint">
+            <div class="endpoint-header">
+                <span class="method get">GET</span>
+                <span class="url">/status</span>
+            </div>
+            <div class="endpoint-body">
+                <p data-site-lang="en">Get current shaker status (RPM, WiFi, Mode).</p>
+                <p data-site-lang="es" style="display:none;">Obtener estado actual del agitador (RPM, WiFi, Modo).</p>
+
+                <h4 data-site-lang="en">Response</h4>
+                <h4 data-site-lang="es" style="display:none;">Respuesta</h4>
+                <pre><code class="language-json">{
+  "currentRpm": 120,
+  "targetRpm": 120,
+  "wifi": true,
+  "ip": "192.168.1.50",
+  "mode": "Running"
+}</code></pre>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2023 BioSync. All rights reserved.</p>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
