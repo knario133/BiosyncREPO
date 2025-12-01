@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioLighting & IAShaker Documentation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Highlight.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo">BioSync IoT</a>
+        <nav class="nav-links">
+            <a href="index.html" class="active" data-lang="en">Home</a>
+            <a href="index.html" class="active" data-lang="es" style="display:none;">Inicio</a>
+
+            <a href="docs/api.html" data-lang="en">API Docs</a>
+            <a href="docs/api.html" data-lang="es" style="display:none;">Documentación API</a>
+
+            <a href="docs/automation.html" data-lang="en">Automation</a>
+            <a href="docs/automation.html" data-lang="es" style="display:none;">Automatización</a>
+
+            <button id="langToggle" class="lang-toggle-btn">ES</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section id="intro">
+        <h1 data-lang="en">Welcome to BioSync IoT</h1>
+        <h1 data-lang="es" style="display:none;">Bienvenido a BioSync IoT</h1>
+
+        <p data-lang="en">Complete documentation and control guide for BioLighting and IAShaker devices. Designed for seamless integration into biotech laboratories.</p>
+        <p data-lang="es" style="display:none;">Documentación completa y guía de control para dispositivos BioLighting e IAShaker. Diseñado para una integración perfecta en laboratorios de biotecnología.</p>
+
+        <div class="intro-grid">
+            <div class="card">
+                <h3>BioLighting</h3>
+                <p data-lang="en">Advanced RGB lighting system with intensity control for photosynthesis experiments and circadian rhythm studies.</p>
+                <p data-lang="es" style="display:none;">Sistema avanzado de iluminación RGB con control de intensidad para experimentos de fotosíntesis y estudios de ritmo circadiano.</p>
+            </div>
+            <div class="card">
+                <h3>IAShakerV2</h3>
+                <p data-lang="en">Precision orbital shaker with adjustable RPM and WiFi connectivity for cell culture aeration and mixing.</p>
+                <p data-lang="es" style="display:none;">Agitador orbital de precisión con RPM ajustable y conectividad WiFi para aireación y mezcla de cultivos celulares.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow">
+        <h2 data-lang="en">Connecting Your Device (AP to WiFi)</h2>
+        <h2 data-lang="es" style="display:none;">Conectando su Dispositivo (AP a WiFi)</h2>
+
+        <p data-lang="en">Both devices act as a WiFi Access Point (AP) out of the box. Follow these steps to connect them to your lab network.</p>
+        <p data-lang="es" style="display:none;">Ambos dispositivos actúan como un Punto de Acceso WiFi (AP) de fábrica. Siga estos pasos para conectarlos a la red de su laboratorio.</p>
+
+        <ol class="step-list">
+            <li>
+                <strong data-lang="en">Power On</strong>
+                <strong data-lang="es" style="display:none;">Encender</strong>
+                <span data-lang="en">Plug in your BioLighting or IAShaker device.</span>
+                <span data-lang="es" style="display:none;">Conecte su dispositivo BioLighting o IAShaker.</span>
+            </li>
+            <li>
+                <strong data-lang="en">Connect to AP</strong>
+                <strong data-lang="es" style="display:none;">Conectar al AP</strong>
+                <span data-lang="en">On your computer or phone, search for a WiFi network named <code>BioShaker_Config</code> or <code>BioLighting</code>.</span>
+                <span data-lang="es" style="display:none;">En su computadora o teléfono, busque una red WiFi llamada <code>BioShaker_Config</code> o <code>BioLighting</code>.</span>
+            </li>
+            <li>
+                <strong data-lang="en">Configure WiFi</strong>
+                <strong data-lang="es" style="display:none;">Configurar WiFi</strong>
+                <span data-lang="en">A captive portal should open automatically (192.168.4.1). If not, navigate there in your browser. Select your lab's WiFi network and enter the password.</span>
+                <span data-lang="es" style="display:none;">Un portal cautivo debería abrirse automáticamente (192.168.4.1). Si no, navegue allí en su navegador. Seleccione la red WiFi de su laboratorio e ingrese la contraseña.</span>
+            </li>
+            <li>
+                <strong data-lang="en">Access Control</strong>
+                <strong data-lang="es" style="display:none;">Acceder al Control</strong>
+                <span data-lang="en">The device will restart and connect to your network. The LCD screen will display its new IP address (e.g., <code>192.168.1.50</code>). Use this IP to access the API.</span>
+                <span data-lang="es" style="display:none;">El dispositivo se reiniciará y se conectará a su red. La pantalla LCD mostrará su nueva dirección IP (ej. <code>192.168.1.50</code>). Use esta IP para acceder a la API.</span>
+            </li>
+        </ol>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2023 BioSync. All rights reserved.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
