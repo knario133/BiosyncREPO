@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation - BioSync IoT</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="../index.html" class="logo">BioSync IoT</a>
+        <nav class="nav-links">
+            <a href="../index.html" data-lang="en">Home</a>
+            <a href="../index.html" data-lang="es" style="display:none;">Inicio</a>
+
+            <a href="api.html" data-lang="en">API Docs</a>
+            <a href="api.html" data-lang="es" style="display:none;">Documentación API</a>
+
+            <a href="automation.html" class="active" data-lang="en">Automation</a>
+            <a href="automation.html" class="active" data-lang="es" style="display:none;">Automatización</a>
+
+            <button id="langToggle" class="lang-toggle-btn">ES</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section>
+        <h1 data-lang="en">Automate your BioReactor</h1>
+        <h1 data-lang="es" style="display:none;">Automatice su Biorreactor</h1>
+        <p data-lang="en">Learn how to schedule tasks to control your devices automatically. Perfect for circadian rhythm experiments or timed agitation.</p>
+        <p data-lang="es" style="display:none;">Aprenda cómo programar tareas para controlar sus dispositivos automáticamente. Perfecto para experimentos de ritmo circadiano o agitación temporizada.</p>
+    </section>
+
+    <div class="script-card">
+        <span class="platform-badge">Windows</span>
+        <h3>Batch Script (.bat)</h3>
+
+        <p data-lang="en">Create a file named <code>set_light.bat</code>:</p>
+        <p data-lang="es" style="display:none;">Cree un archivo llamado <code>set_light.bat</code>:</p>
+        <pre><code class="language-dos">@echo off
+:: Set BioLighting to Warm White
+curl -X POST http://192.168.1.50/api/light ^
+     -H "Content-Type: application/json" ^
+     -d "{\"r\":255,\"g\":180,\"b\":100,\"intensity\":100}"
+pause</code></pre>
+
+        <h4 data-lang="en">Scheduling (Task Scheduler)</h4>
+        <h4 data-lang="es" style="display:none;">Programación (Programador de Tareas)</h4>
+        <ol class="step-list">
+            <li>Open "Task Scheduler" from the Start Menu.</li>
+            <li>Click "Create Basic Task" and name it "BioLight Morning".</li>
+            <li>Set the Trigger to "Daily" and choose the time (e.g., 08:00 AM).</li>
+            <li>Action: "Start a Program". Browse and select your <code>set_light.bat</code> file.</li>
+            <li>Finish and save. Your lights will now turn on automatically every morning!</li>
+        </ol>
+    </div>
+
+    <div class="script-card">
+        <span class="platform-badge">macOS</span>
+        <h3>Shell Script</h3>
+
+        <p data-lang="en">Create a file named <code>set_rpm.sh</code> and make it executable (<code>chmod +x set_rpm.sh</code>):</p>
+        <p data-lang="es" style="display:none;">Cree un archivo llamado <code>set_rpm.sh</code> y hágalo ejecutable (<code>chmod +x set_rpm.sh</code>):</p>
+        <pre><code class="language-bash">#!/bin/bash
+# Set IAShaker to 120 RPM
+curl "http://192.168.1.51/rpm?value=120"</code></pre>
+
+        <h4 data-lang="en">Scheduling (Automator)</h4>
+        <h4 data-lang="es" style="display:none;">Programación (Automator)</h4>
+        <ol class="step-list">
+            <li>Open "Automator" and create a "Calendar Alarm".</li>
+            <li>Drag "Run Shell Script" from the actions library.</li>
+            <li>Paste the content of your script or execute the file path.</li>
+            <li>Save. Calendar will open; set the event time and repeat interval (e.g., every day at 9 AM).</li>
+        </ol>
+    </div>
+
+    <div class="script-card">
+        <span class="platform-badge">Linux</span>
+        <h3>Bash Script</h3>
+
+        <p data-lang="en">Create a file named <code>experiment_start.sh</code>:</p>
+        <p data-lang="es" style="display:none;">Cree un archivo llamado <code>experiment_start.sh</code>:</p>
+        <pre><code class="language-bash">#!/bin/bash
+# Turn on Light and Start Shaker
+curl -X POST http://192.168.1.50/api/light -d '{"r":0,"g":255,"b":0,"intensity":100}' -H "Content-Type: application/json"
+curl "http://192.168.1.51/rpm?value=150"</code></pre>
+
+        <h4 data-lang="en">Scheduling (Crontab)</h4>
+        <h4 data-lang="es" style="display:none;">Programación (Crontab)</h4>
+        <p>Edit your crontab with <code>crontab -e</code> and add a line:</p>
+        <pre><code class="language-bash"># Run every day at 08:00 AM
+00 08 * * * /path/to/experiment_start.sh</code></pre>
+    </div>
+
+</main>
+
+<footer>
+    <p>&copy; 2023 BioSync. All rights reserved.</p>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
