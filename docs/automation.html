@@ -7,12 +7,20 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <header>
     <div class="nav-container">
-        <a href="../index.html" class="logo">BioSync IoT</a>
+        <a href="../index.html" class="logo">
+            <img src="../assets/logo.png" alt="BioSync Logo" style="height: 60px;">
+        </a>
+         <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+             <span class="bar"></span>
+             <span class="bar"></span>
+             <span class="bar"></span>
+         </button>
         <nav class="nav-links">
             <a href="../index.html" data-site-lang="en">Home</a>
             <a href="../index.html" data-site-lang="es" style="display:none;">Inicio</a>
@@ -39,8 +47,8 @@
             <strong data-site-lang="en">Important:</strong>
             <strong data-site-lang="es" style="display:none;">Importante:</strong>
             <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
-                <li data-site-lang="en">Always use the <strong>IP address displayed on the device's LCD screen</strong>. The examples below use placeholders.</li>
-                <li data-site-lang="es" style="display:none;">Use siempre la <strong>dirección IP que aparece en la pantalla LCD del dispositivo</strong>. Los ejemplos a continuación usan marcadores de posición.</li>
+                <li data-site-lang="en">Always use the <strong>IP address displayed on the device's LCD screen</strong>. The examples below use placeholders like <code>192.168.1.50</code>.</li>
+                <li data-site-lang="es" style="display:none;">Use siempre la <strong>dirección IP que aparece en la pantalla LCD del dispositivo</strong>. Los ejemplos a continuación usan marcadores de posición como <code>192.168.1.50</code>.</li>
 
                 <li data-site-lang="en" style="margin-top: 0.5rem;">The devices only support <strong>2.4GHz WiFi networks</strong>. Higher frequencies (5GHz, 6GHz) are not supported.</li>
                 <li data-site-lang="es" style="display:none; margin-top: 0.5rem;">Los dispositivos solo soportan <strong>redes WiFi de 2.4GHz</strong>. Las frecuencias superiores (5GHz, 6GHz) no son compatibles.</li>
@@ -48,66 +56,134 @@
         </div>
     </section>
 
+    <!-- Windows Section -->
     <div class="script-card">
-        <span class="platform-badge">Windows</span>
-        <h3>Batch Script (.bat)</h3>
+        <div style="font-size: 2rem; color: var(--primary-navy); margin-bottom: 0.5rem;">
+            <i class="fa-brands fa-windows"></i>
+        </div>
+        <h3 data-site-lang="en">Windows (PowerShell)</h3>
+        <h3 data-site-lang="es" style="display:none;">Windows (PowerShell)</h3>
 
-        <p data-site-lang="en">Create a file named <code>set_light.bat</code>:</p>
-        <p data-site-lang="es" style="display:none;">Cree un archivo llamado <code>set_light.bat</code>:</p>
-        <pre><code class="language-dos">@echo off
-:: Set BioLighting to Warm White
-curl -X POST http://192.168.1.50/api/light ^
-     -H "Content-Type: application/json" ^
-     -d "{\"r\":255,\"g\":180,\"b\":100,\"intensity\":100}"
-pause</code></pre>
+        <h4 data-site-lang="en">Ready-to-use Scripts</h4>
+        <h4 data-site-lang="es" style="display:none;">Scripts Listos para Usar</h4>
+        <p data-site-lang="en">Copy these commands into a <code>.ps1</code> file or run them directly in PowerShell.</p>
+        <p data-site-lang="es" style="display:none;">Copie estos comandos en un archivo <code>.ps1</code> o ejecútelos directamente en PowerShell.</p>
 
-        <h4 data-site-lang="en">Scheduling (Task Scheduler)</h4>
-        <h4 data-site-lang="es" style="display:none;">Programación (Programador de Tareas)</h4>
+        <p><strong>BioLighting - Get Status / Obtener Estado</strong></p>
+        <pre><code class="language-powershell">Invoke-RestMethod -Uri "http://192.168.1.50/api/light" -Method Get</code></pre>
+
+        <p><strong>BioLighting - Set Color / Configurar Color</strong></p>
+        <pre><code class="language-powershell">$body = @{r=255; g=180; b=100; intensity=100} | ConvertTo-Json
+Invoke-RestMethod -Uri "http://192.168.1.50/api/light" -Method Post -Body $body -ContentType "application/json"</code></pre>
+
+        <p><strong>BioShaker - Get Status / Obtener Estado</strong></p>
+        <pre><code class="language-powershell">Invoke-RestMethod -Uri "http://192.168.1.51/status" -Method Get</code></pre>
+
+        <p><strong>BioShaker - Set RPM / Configurar RPM</strong></p>
+        <pre><code class="language-powershell">Invoke-RestMethod -Uri "http://192.168.1.51/rpm?value=120" -Method Get</code></pre>
+
+        <h4 data-site-lang="en" style="margin-top: 1.5rem;">Scheduling (Task Scheduler)</h4>
+        <h4 data-site-lang="es" style="display:none; margin-top: 1.5rem;">Programación (Programador de Tareas)</h4>
         <ol class="step-list">
-            <li>Open "Task Scheduler" from the Start Menu.</li>
-            <li>Click "Create Basic Task" and name it "BioLight Morning".</li>
-            <li>Set the Trigger to "Daily" and choose the time (e.g., 08:00 AM).</li>
-            <li>Action: "Start a Program". Browse and select your <code>set_light.bat</code> file.</li>
-            <li>Finish and save. Your lights will now turn on automatically every morning!</li>
+            <li>
+                <span data-site-lang="en">Save the command in a file, e.g., <code>script.ps1</code>.</span>
+                <span data-site-lang="es" style="display:none;">Guarde el comando en un archivo, ej. <code>script.ps1</code>.</span>
+            </li>
+            <li>
+                <span data-site-lang="en">Open "Task Scheduler" and create a Basic Task.</span>
+                <span data-site-lang="es" style="display:none;">Abra "Programador de Tareas" y cree una Tarea Básica.</span>
+            </li>
+            <li>
+                <span data-site-lang="en">Action: Start a Program. Program: <code>powershell.exe</code>.</span>
+                <span data-site-lang="es" style="display:none;">Acción: Iniciar un programa. Programa: <code>powershell.exe</code>.</span>
+            </li>
+            <li>
+                <span data-site-lang="en">Arguments: <code>-ExecutionPolicy Bypass -File "C:\Path\To\script.ps1"</code>.</span>
+                <span data-site-lang="es" style="display:none;">Argumentos: <code>-ExecutionPolicy Bypass -File "C:\Ruta\A\script.ps1"</code>.</span>
+            </li>
         </ol>
     </div>
 
+    <!-- macOS Section -->
     <div class="script-card">
-        <span class="platform-badge">macOS</span>
-        <h3>Shell Script</h3>
+        <div style="font-size: 2rem; color: var(--primary-navy); margin-bottom: 0.5rem;">
+            <i class="fa-brands fa-apple"></i>
+        </div>
+        <h3 data-site-lang="en">macOS (Terminal/cURL)</h3>
+        <h3 data-site-lang="es" style="display:none;">macOS (Terminal/cURL)</h3>
 
-        <p data-site-lang="en">Create a file named <code>set_rpm.sh</code> and make it executable (<code>chmod +x set_rpm.sh</code>):</p>
-        <p data-site-lang="es" style="display:none;">Cree un archivo llamado <code>set_rpm.sh</code> y hágalo ejecutable (<code>chmod +x set_rpm.sh</code>):</p>
-        <pre><code class="language-bash">#!/bin/bash
-# Set IAShaker to 120 RPM
-curl "http://192.168.1.51/rpm?value=120"</code></pre>
+        <h4 data-site-lang="en">Ready-to-use Scripts</h4>
+        <h4 data-site-lang="es" style="display:none;">Scripts Listos para Usar</h4>
+        <p data-site-lang="en">Use these commands in Terminal or save them as <code>.sh</code> files.</p>
+        <p data-site-lang="es" style="display:none;">Use estos comandos en Terminal o guárdelos como archivos <code>.sh</code>.</p>
 
-        <h4 data-site-lang="en">Scheduling (Automator)</h4>
-        <h4 data-site-lang="es" style="display:none;">Programación (Automator)</h4>
+        <p><strong>BioLighting - Get Status / Obtener Estado</strong></p>
+        <pre><code class="language-bash">curl "http://192.168.1.50/api/light"</code></pre>
+
+        <p><strong>BioLighting - Set Color / Configurar Color</strong></p>
+        <pre><code class="language-bash">curl -X POST "http://192.168.1.50/api/light" \
+     -H "Content-Type: application/json" \
+     -d '{"r":255,"g":180,"b":100,"intensity":100}'</code></pre>
+
+        <p><strong>BioShaker - Get Status / Obtener Estado</strong></p>
+        <pre><code class="language-bash">curl "http://192.168.1.51/status"</code></pre>
+
+        <p><strong>BioShaker - Set RPM / Configurar RPM</strong></p>
+        <pre><code class="language-bash">curl "http://192.168.1.51/rpm?value=120"</code></pre>
+
+        <h4 data-site-lang="en" style="margin-top: 1.5rem;">Scheduling (Automator)</h4>
+        <h4 data-site-lang="es" style="display:none; margin-top: 1.5rem;">Programación (Automator)</h4>
         <ol class="step-list">
-            <li>Open "Automator" and create a "Calendar Alarm".</li>
-            <li>Drag "Run Shell Script" from the actions library.</li>
-            <li>Paste the content of your script or execute the file path.</li>
-            <li>Save. Calendar will open; set the event time and repeat interval (e.g., every day at 9 AM).</li>
+            <li>
+                <span data-site-lang="en">Open "Automator" and create a "Calendar Alarm".</span>
+                <span data-site-lang="es" style="display:none;">Abra "Automator" y cree una "Alarma de Calendario".</span>
+            </li>
+            <li>
+                <span data-site-lang="en">Drag "Run Shell Script" from the actions library.</span>
+                <span data-site-lang="es" style="display:none;">Arrastre "Ejecutar script de shell" desde la biblioteca de acciones.</span>
+            </li>
+            <li>
+                <span data-site-lang="en">Paste one of the cURL commands above.</span>
+                <span data-site-lang="es" style="display:none;">Pegue uno de los comandos cURL de arriba.</span>
+            </li>
+            <li>
+                <span data-site-lang="en">Save. Calendar will open; set the event time and repeat interval.</span>
+                <span data-site-lang="es" style="display:none;">Guardar. Se abrirá Calendario; establezca la hora del evento y el intervalo de repetición.</span>
+            </li>
         </ol>
     </div>
 
+    <!-- Linux Section -->
     <div class="script-card">
-        <span class="platform-badge">Linux</span>
-        <h3>Bash Script</h3>
+        <div style="font-size: 2rem; color: var(--primary-navy); margin-bottom: 0.5rem;">
+            <i class="fa-brands fa-linux"></i>
+        </div>
+        <h3 data-site-lang="en">Linux (Bash/cURL)</h3>
+        <h3 data-site-lang="es" style="display:none;">Linux (Bash/cURL)</h3>
 
-        <p data-site-lang="en">Create a file named <code>experiment_start.sh</code>:</p>
-        <p data-site-lang="es" style="display:none;">Cree un archivo llamado <code>experiment_start.sh</code>:</p>
-        <pre><code class="language-bash">#!/bin/bash
-# Turn on Light and Start Shaker
-curl -X POST http://192.168.1.50/api/light -d '{"r":0,"g":255,"b":0,"intensity":100}' -H "Content-Type: application/json"
-curl "http://192.168.1.51/rpm?value=150"</code></pre>
+        <h4 data-site-lang="en">Ready-to-use Scripts</h4>
+        <h4 data-site-lang="es" style="display:none;">Scripts Listos para Usar</h4>
 
-        <h4 data-site-lang="en">Scheduling (Crontab)</h4>
-        <h4 data-site-lang="es" style="display:none;">Programación (Crontab)</h4>
-        <p>Edit your crontab with <code>crontab -e</code> and add a line:</p>
-        <pre><code class="language-bash"># Run every day at 08:00 AM
-00 08 * * * /path/to/experiment_start.sh</code></pre>
+        <p><strong>BioLighting - Get Status / Obtener Estado</strong></p>
+        <pre><code class="language-bash">curl "http://192.168.1.50/api/light"</code></pre>
+
+        <p><strong>BioLighting - Set Color / Configurar Color</strong></p>
+        <pre><code class="language-bash">curl -X POST "http://192.168.1.50/api/light" \
+     -H "Content-Type: application/json" \
+     -d '{"r":0,"g":255,"b":0,"intensity":100}'</code></pre>
+
+        <p><strong>BioShaker - Get Status / Obtener Estado</strong></p>
+        <pre><code class="language-bash">curl "http://192.168.1.51/status"</code></pre>
+
+        <p><strong>BioShaker - Set RPM / Configurar RPM</strong></p>
+        <pre><code class="language-bash">curl "http://192.168.1.51/rpm?value=150"</code></pre>
+
+        <h4 data-site-lang="en" style="margin-top: 1.5rem;">Scheduling (Crontab)</h4>
+        <h4 data-site-lang="es" style="display:none; margin-top: 1.5rem;">Programación (Crontab)</h4>
+        <p data-site-lang="en">Edit your crontab with <code>crontab -e</code> and add a line to run a script or command:</p>
+        <p data-site-lang="es" style="display:none;">Edite su crontab con <code>crontab -e</code> y agregue una línea para ejecutar un script o comando:</p>
+        <pre><code class="language-bash"># Run every day at 08:00 AM / Ejecutar todos los días a las 08:00 AM
+00 08 * * * curl "http://192.168.1.50/rpm?value=100"</code></pre>
     </div>
 
 </main>
