@@ -7,12 +7,20 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <header>
     <div class="nav-container">
-        <a href="../index.html" class="logo">BioSync IoT</a>
+        <a href="../index.html" class="logo">
+            <img src="../assets/logo.png" alt="BioSync Logo" style="height: 60px;">
+        </a>
+         <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+             <span class="bar"></span>
+             <span class="bar"></span>
+             <span class="bar"></span>
+         </button>
         <nav class="nav-links">
             <a href="../index.html" data-site-lang="en">Home</a>
             <a href="../index.html" data-site-lang="es" style="display:none;">Inicio</a>
@@ -49,8 +57,11 @@
     </section>
 
     <div class="script-card">
-        <span class="platform-badge">Windows</span>
-        <h3>Batch Script (.bat)</h3>
+        <div style="font-size: 2rem; color: var(--primary-navy); margin-bottom: 0.5rem;">
+            <i class="fa-brands fa-windows"></i>
+        </div>
+        <h3 data-site-lang="en">Batch Script (.bat)</h3>
+        <h3 data-site-lang="es" style="display:none;">Script por Lotes (.bat)</h3>
 
         <p data-site-lang="en">Create a file named <code>set_light.bat</code>:</p>
         <p data-site-lang="es" style="display:none;">Cree un archivo llamado <code>set_light.bat</code>:</p>
@@ -64,17 +75,35 @@ pause</code></pre>
         <h4 data-site-lang="en">Scheduling (Task Scheduler)</h4>
         <h4 data-site-lang="es" style="display:none;">Programación (Programador de Tareas)</h4>
         <ol class="step-list">
-            <li>Open "Task Scheduler" from the Start Menu.</li>
-            <li>Click "Create Basic Task" and name it "BioLight Morning".</li>
-            <li>Set the Trigger to "Daily" and choose the time (e.g., 08:00 AM).</li>
-            <li>Action: "Start a Program". Browse and select your <code>set_light.bat</code> file.</li>
-            <li>Finish and save. Your lights will now turn on automatically every morning!</li>
+            <li>
+                <span data-site-lang="en">Open "Task Scheduler" from the Start Menu.</span>
+                <span data-site-lang="es" style="display:none;">Abra "Programador de Tareas" desde el Menú Inicio.</span>
+            </li>
+            <li>
+                <span data-site-lang="en">Click "Create Basic Task" and name it "BioLight Morning".</span>
+                <span data-site-lang="es" style="display:none;">Haga clic en "Crear tarea básica" y nómbrela "BioLight Mañana".</span>
+            </li>
+            <li>
+                <span data-site-lang="en">Set the Trigger to "Daily" and choose the time (e.g., 08:00 AM).</span>
+                <span data-site-lang="es" style="display:none;">Configure el Desencadenador en "Diariamente" y elija la hora (ej. 08:00 AM).</span>
+            </li>
+            <li>
+                <span data-site-lang="en">Action: "Start a Program". Browse and select your <code>set_light.bat</code> file.</span>
+                <span data-site-lang="es" style="display:none;">Acción: "Iniciar un programa". Busque y seleccione su archivo <code>set_light.bat</code>.</span>
+            </li>
+            <li>
+                <span data-site-lang="en">Finish and save. Your lights will now turn on automatically every morning!</span>
+                <span data-site-lang="es" style="display:none;">Finalizar y guardar. ¡Sus luces ahora se encenderán automáticamente cada mañana!</span>
+            </li>
         </ol>
     </div>
 
     <div class="script-card">
-        <span class="platform-badge">macOS</span>
-        <h3>Shell Script</h3>
+        <div style="font-size: 2rem; color: var(--primary-navy); margin-bottom: 0.5rem;">
+            <i class="fa-brands fa-apple"></i>
+        </div>
+        <h3 data-site-lang="en">Shell Script</h3>
+        <h3 data-site-lang="es" style="display:none;">Script Shell</h3>
 
         <p data-site-lang="en">Create a file named <code>set_rpm.sh</code> and make it executable (<code>chmod +x set_rpm.sh</code>):</p>
         <p data-site-lang="es" style="display:none;">Cree un archivo llamado <code>set_rpm.sh</code> y hágalo ejecutable (<code>chmod +x set_rpm.sh</code>):</p>
@@ -93,8 +122,11 @@ curl "http://192.168.1.51/rpm?value=120"</code></pre>
     </div>
 
     <div class="script-card">
-        <span class="platform-badge">Linux</span>
-        <h3>Bash Script</h3>
+        <div style="font-size: 2rem; color: var(--primary-navy); margin-bottom: 0.5rem;">
+            <i class="fa-brands fa-linux"></i>
+        </div>
+        <h3 data-site-lang="en">Bash Script</h3>
+        <h3 data-site-lang="es" style="display:none;">Script Bash</h3>
 
         <p data-site-lang="en">Create a file named <code>experiment_start.sh</code>:</p>
         <p data-site-lang="es" style="display:none;">Cree un archivo llamado <code>experiment_start.sh</code>:</p>
@@ -105,7 +137,8 @@ curl "http://192.168.1.51/rpm?value=150"</code></pre>
 
         <h4 data-site-lang="en">Scheduling (Crontab)</h4>
         <h4 data-site-lang="es" style="display:none;">Programación (Crontab)</h4>
-        <p>Edit your crontab with <code>crontab -e</code> and add a line:</p>
+        <p data-site-lang="en">Edit your crontab with <code>crontab -e</code> and add a line:</p>
+        <p data-site-lang="es" style="display:none;">Edite su crontab con <code>crontab -e</code> y agregue una línea:</p>
         <pre><code class="language-bash"># Run every day at 08:00 AM
 00 08 * * * /path/to/experiment_start.sh</code></pre>
     </div>
