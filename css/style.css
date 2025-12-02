@@ -89,6 +89,28 @@ header {
     color: var(--white);
 }
 
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-navy);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+}
+
 /* Main Content */
 main {
     width: 90%;
@@ -227,6 +249,7 @@ p {
 /* Code Blocks */
 pre {
     background: var(--code-bg);
+    color: #f8f8f2;
     border-radius: 6px;
     padding: 1rem;
     overflow-x: auto;
@@ -301,7 +324,38 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
+    header {
+        height: var(--header-height);
+        padding: 0;
+        overflow: visible; /* Ensure dropdown is visible */
+    }
+
+    .nav-container {
+        flex-direction: row; /* Keep logo and hamburger side by side */
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
     .nav-links {
-        display: none; /* Simple mobile hide for now, could add burger */
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        border-bottom: 1px solid #e0e0e0;
+        padding: 1rem 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .nav-links.active {
+        display: flex;
     }
 }
