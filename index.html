@@ -13,7 +13,14 @@
 
 <header>
     <div class="nav-container">
-        <a href="index.html" class="logo">BioSync IoT</a>
+        <a href="index.html" class="logo">
+            <img src="assets/logo.png" alt="BioSync Logo" style="height: 60px;">
+        </a>
+         <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+             <span class="bar"></span>
+             <span class="bar"></span>
+             <span class="bar"></span>
+         </button>
         <nav class="nav-links">
             <a href="index.html" class="active" data-site-lang="en">Home</a>
             <a href="index.html" class="active" data-site-lang="es" style="display:none;">Inicio</a>
@@ -34,8 +41,8 @@
         <h1 data-site-lang="en">Welcome to BioSync IoT</h1>
         <h1 data-site-lang="es" style="display:none;">Bienvenido a BioSync IoT</h1>
 
-        <p data-site-lang="en">Complete documentation and control guide for BioLighting and IAShaker devices. Designed for seamless integration into biotech laboratories.</p>
-        <p data-site-lang="es" style="display:none;">Documentación completa y guía de control para dispositivos BioLighting e IAShaker. Diseñado para una integración perfecta en laboratorios de biotecnología.</p>
+        <p data-site-lang="en">Complete documentation and control guide for BioLighting and BioShaker devices. Designed for seamless integration into biotech laboratories.</p>
+        <p data-site-lang="es" style="display:none;">Documentación completa y guía de control para dispositivos BioLighting y BioShaker. Diseñado para una integración perfecta en laboratorios de biotecnología.</p>
 
         <div class="intro-grid">
             <div class="card">
@@ -44,7 +51,7 @@
                 <p data-site-lang="es" style="display:none;">Sistema avanzado de iluminación RGB con control de intensidad para experimentos de fotosíntesis y estudios de ritmo circadiano.</p>
             </div>
             <div class="card">
-                <h3>IAShakerV2</h3>
+                <h3>BioShaker</h3>
                 <p data-site-lang="en">Precision orbital shaker with adjustable RPM and WiFi connectivity for cell culture aeration and mixing.</p>
                 <p data-site-lang="es" style="display:none;">Agitador orbital de precisión con RPM ajustable y conectividad WiFi para aireación y mezcla de cultivos celulares.</p>
             </div>
@@ -52,36 +59,60 @@
     </section>
 
     <section id="workflow">
-        <h2 data-site-lang="en">Connecting Your Device (AP to WiFi)</h2>
-        <h2 data-site-lang="es" style="display:none;">Conectando su Dispositivo (AP a WiFi)</h2>
+        <h2 data-site-lang="en">Initial Network Configuration (AP Mode)</h2>
+        <h2 data-site-lang="es" style="display:none;">Configuración Inicial de Red (Modo AP)</h2>
 
-        <p data-site-lang="en">Both devices act as a WiFi Access Point (AP) out of the box. Follow these steps to connect them to your lab network.</p>
-        <p data-site-lang="es" style="display:none;">Ambos dispositivos actúan como un Punto de Acceso WiFi (AP) de fábrica. Siga estos pasos para conectarlos a la red de su laboratorio.</p>
+        <div style="background-color: #fff3cd; color: #856404; padding: 1rem; border-radius: 8px; border: 1px solid #ffeeba; margin-bottom: 1.5rem;">
+            <strong data-site-lang="en">Important:</strong>
+            <strong data-site-lang="es" style="display:none;">Importante:</strong>
+            <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                <li data-site-lang="en">Always use the <strong>IP address displayed on the device's LCD screen</strong>. The examples below use placeholders.</li>
+                <li data-site-lang="es" style="display:none;">Use siempre la <strong>dirección IP que aparece en la pantalla LCD del dispositivo</strong>. Los ejemplos a continuación usan marcadores de posición.</li>
+
+                <li data-site-lang="en" style="margin-top: 0.5rem;">The devices only support <strong>2.4GHz WiFi networks</strong>. Higher frequencies (5GHz, 6GHz) are not supported.</li>
+                <li data-site-lang="es" style="display:none; margin-top: 0.5rem;">Los dispositivos solo soportan <strong>redes WiFi de 2.4GHz</strong>. Las frecuencias superiores (5GHz, 6GHz) no son compatibles.</li>
+            </ul>
+        </div>
+
+        <p data-site-lang="en">Description: From the factory, both BioLighting and BioShaker start in "Access Point" mode to facilitate their first configuration. Follow these steps to connect them to your lab's WiFi network:</p>
+        <p data-site-lang="es" style="display:none;">Descripción: De fábrica, tanto el BioLighting como el IAShaker inician en modo "Punto de Acceso" para facilitar su primera configuración. Siga estos pasos para conectarlos a la red WiFi de su laboratorio:</p>
 
         <ol class="step-list">
             <li>
                 <strong data-site-lang="en">Power On</strong>
-                <strong data-site-lang="es" style="display:none;">Encender</strong>
-                <span data-site-lang="en">Plug in your BioLighting or IAShaker device.</span>
-                <span data-site-lang="es" style="display:none;">Conecte su dispositivo BioLighting o IAShaker.</span>
+                <strong data-site-lang="es" style="display:none;">Encendido</strong>
+                <span data-site-lang="en">Connect your device to the power outlet. Wait a few seconds for it to start.</span>
+                <span data-site-lang="es" style="display:none;">Conecte su dispositivo a la corriente eléctrica. Espere unos segundos hasta que inicie.</span>
             </li>
             <li>
-                <strong data-site-lang="en">Connect to AP</strong>
-                <strong data-site-lang="es" style="display:none;">Conectar al AP</strong>
-                <span data-site-lang="en">On your computer or phone, search for a WiFi network named <code>BioShaker_Config</code> or <code>BioLighting</code>.</span>
-                <span data-site-lang="es" style="display:none;">En su computadora o teléfono, busque una red WiFi llamada <code>BioShaker_Config</code> o <code>BioLighting</code>.</span>
+                <strong data-site-lang="en">Device Connection</strong>
+                <strong data-site-lang="es" style="display:none;">Conexión al Dispositivo</strong>
+                <span data-site-lang="en">From your computer or mobile phone, search for available WiFi networks and connect to the network named <code>BioShaker_Config</code> or <code>BioLighting</code> (depending on the equipment you are configuring).</span>
+                <span data-site-lang="es" style="display:none;">Desde su computadora o teléfono móvil, busque las redes WiFi disponibles y conéctese a la red llamada <code>BioShaker_Config</code> o <code>BioLighting</code> (dependiendo del equipo que esté configurando).</span>
             </li>
             <li>
-                <strong data-site-lang="en">Configure WiFi</strong>
-                <strong data-site-lang="es" style="display:none;">Configurar WiFi</strong>
-                <span data-site-lang="en">A captive portal should open automatically (192.168.4.1). If not, navigate there in your browser. Select your lab's WiFi network and enter the password.</span>
-                <span data-site-lang="es" style="display:none;">Un portal cautivo debería abrirse automáticamente (192.168.4.1). Si no, navegue allí en su navegador. Seleccione la red WiFi de su laboratorio e ingrese la contraseña.</span>
+                <strong data-site-lang="en">Configuration Portal</strong>
+                <strong data-site-lang="es" style="display:none;">Portal de Configuración</strong>
+                <span data-site-lang="en">Upon connection, a login window (Captive Portal) should open automatically. <br><strong>Note:</strong> If the window does not appear automatically, open your web browser and enter the address: <a href="http://192.168.4.1">http://192.168.4.1</a></span>
+                <span data-site-lang="es" style="display:none;">Al conectarse, debería abrirse automáticamente una ventana de inicio de sesión (Portal Cautivo). <br><strong>Nota:</strong> Si la ventana no aparece automáticamente, abra su navegador web e ingrese a la dirección: <a href="http://192.168.4.1">http://192.168.4.1</a></span>
             </li>
             <li>
-                <strong data-site-lang="en">Access Control</strong>
-                <strong data-site-lang="es" style="display:none;">Acceder al Control</strong>
-                <span data-site-lang="en">The device will restart and connect to your network. The LCD screen will display its new IP address (e.g., <code>192.168.1.50</code>). Use this IP to access the API.</span>
-                <span data-site-lang="es" style="display:none;">El dispositivo se reiniciará y se conectará a su red. La pantalla LCD mostrará su nueva dirección IP (ej. <code>192.168.1.50</code>). Use esta IP para acceder a la API.</span>
+                <strong data-site-lang="en">WiFi Credentials</strong>
+                <strong data-site-lang="es" style="display:none;">Credenciales WiFi</strong>
+                <span data-site-lang="en">In the interface that appears, select your lab's WiFi network name (SSID) and enter the corresponding password. Click save/connect.</span>
+                <span data-site-lang="es" style="display:none;">En la interfaz que aparece, seleccione el nombre de la red WiFi de su laboratorio (SSID) e ingrese la contraseña correspondiente. Haga clic en guardar/conectar.</span>
+            </li>
+            <li>
+                <strong data-site-lang="en">Restart and Access</strong>
+                <strong data-site-lang="es" style="display:none;">Reinicio y Acceso</strong>
+                <span data-site-lang="en">The device will save the data and automatically restart to connect to the lab network.</span>
+                <span data-site-lang="es" style="display:none;">El dispositivo guardará los datos y se reiniciará automáticamente para conectarse a la red del laboratorio.</span>
+            </li>
+            <li>
+                <strong data-site-lang="en">Important</strong>
+                <strong data-site-lang="es" style="display:none;">Importante</strong>
+                <span data-site-lang="en">Observe the device's LCD screen. Once connected, it will display its new assigned IP Address (e.g. 192.168.1.50). Use this IP in your browser to access the control interface.</span>
+                <span data-site-lang="es" style="display:none;">Observe la pantalla LCD del dispositivo. Una vez conectado, mostrará su nueva Dirección IP asignada (ej. 192.168.1.50). Use esta IP en su navegador para acceder a la interfaz de control.</span>
             </li>
         </ol>
     </section>
