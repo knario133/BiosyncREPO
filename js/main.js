@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update Button Text
         if (langBtn) {
-            langBtn.textContent = lang === 'en' ? 'ES' : 'EN';
+            langBtn.textContent = lang === 'en' ? 'ESPAÑOL' : 'ENGLISH';
         }
 
         // Toggle visibility of language elements
@@ -31,6 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Language
     setLanguage(currentLang);
+
+    // Mobile Menu Logic
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('active');
+        });
+    }
 
     // Tab Logic for Code Examples
     const tabButtons = document.querySelectorAll('.tab-btn');

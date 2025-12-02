@@ -12,7 +12,14 @@
 
 <header>
     <div class="nav-container">
-        <a href="../index.html" class="logo">BioSync IoT</a>
+        <a href="../index.html" class="logo">
+            <img src="../assets/logo.png" alt="BioSync Logo" style="height: 60px;">
+        </a>
+         <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+             <span class="bar"></span>
+             <span class="bar"></span>
+             <span class="bar"></span>
+         </button>
         <nav class="nav-links">
             <a href="../index.html" data-site-lang="en">Home</a>
             <a href="../index.html" data-site-lang="es" style="display:none;">Inicio</a>
@@ -58,6 +65,155 @@
   "b": 0,
   "intensity": 80
 }</code></pre>
+
+                <h4 data-site-lang="en">Code Examples</h4>
+                <h4 data-site-lang="es" style="display:none;">Ejemplos de Código</h4>
+
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="python">Python</button>
+                        <button class="tab-btn" data-tab="js">JavaScript</button>
+                        <button class="tab-btn" data-tab="java">Java</button>
+                        <button class="tab-btn" data-tab="csharp">C#</button>
+                        <button class="tab-btn" data-tab="ts">TypeScript</button>
+                        <button class="tab-btn" data-tab="go">Go</button>
+                        <button class="tab-btn" data-tab="cpp">C++</button>
+                        <button class="tab-btn" data-tab="php">PHP</button>
+                        <button class="tab-btn" data-tab="swift">Swift</button>
+                        <button class="tab-btn" data-tab="c">C</button>
+                    </div>
+
+                    <div class="tab-content active" data-lang="python">
+<pre><code class="language-python">import requests
+
+url = "http://&lt;ip_dispositivo&gt;/api/light"
+response = requests.get(url)
+print(response.json())</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="js">
+<pre><code class="language-javascript">const url = "http://&lt;ip_dispositivo&gt;/api/light";
+
+fetch(url)
+.then(res => res.json())
+.then(data => console.log(data));</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="java">
+<pre><code class="language-java">import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+
+public class BioControl {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("http://&lt;ip_dispositivo&gt;/api/light"))
+            .GET()
+            .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="csharp">
+<pre><code class="language-csharp">using System.Net.Http;
+
+var client = new HttpClient();
+var response = await client.GetAsync("http://&lt;ip_dispositivo&gt;/api/light");
+Console.WriteLine(await response.Content.ReadAsStringAsync());</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="ts">
+<pre><code class="language-typescript">import axios from 'axios';
+
+axios.get('http://&lt;ip_dispositivo&gt;/api/light')
+    .then(res => console.log(res.data));</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="go">
+<pre><code class="language-go">package main
+
+import (
+    "net/http"
+    "fmt"
+    "io/ioutil"
+)
+
+func main() {
+    resp, err := http.Get("http://&lt;ip_dispositivo&gt;/api/light")
+    if err != nil {
+        panic(err)
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println(string(body))
+}</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="cpp">
+<pre><code class="language-cpp">#include <curl/curl.h>
+#include <string>
+
+int main() {
+    CURL *curl;
+    CURLcode res;
+
+    curl_global_init(CURL_GLOBAL_ALL);
+    curl = curl_easy_init();
+
+    if(curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, "http://&lt;ip_dispositivo&gt;/api/light");
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+    }
+    return 0;
+}</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="php">
+<pre><code class="language-php"><?php
+$url = 'http://&lt;ip_dispositivo&gt;/api/light';
+echo file_get_contents($url);
+?></code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="swift">
+<pre><code class="language-swift">import Foundation
+
+let url = URL(string: "http://&lt;ip_dispositivo&gt;/api/light")!
+let task = URLSession.shared.dataTask(with: url) { data, _, _ in
+    if let data = data {
+        print(String(data: data, encoding: .utf8)!)
+    }
+}
+task.resume()</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="c">
+<pre><code class="language-c">#include <stdio.h>
+#include <curl/curl.h>
+
+int main(void) {
+    CURL *curl;
+    CURLcode res;
+
+    curl_global_init(CURL_GLOBAL_ALL);
+    curl = curl_easy_init();
+
+    if(curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, "http://&lt;ip_dispositivo&gt;/api/light");
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+    }
+    curl_global_cleanup();
+    return 0;
+}</code></pre>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -121,7 +277,7 @@
                     <div class="tab-content active" data-lang="python">
 <pre><code class="language-python">import requests
 
-url = "http://<DEVICE_IP>/api/light"
+url = "http://&lt;ip_dispositivo&gt;/api/light"
 payload = {"r": 255, "g": 100, "b": 50, "intensity": 100}
 
 response = requests.post(url, json=payload)
@@ -129,7 +285,7 @@ print(response.json())</code></pre>
                     </div>
 
                     <div class="tab-content" data-lang="js">
-<pre><code class="language-javascript">const url = "http://<DEVICE_IP>/api/light";
+<pre><code class="language-javascript">const url = "http://&lt;ip_dispositivo&gt;/api/light";
 const payload = { r: 255, g: 100, b: 50, intensity: 100 };
 
 fetch(url, {
@@ -153,7 +309,7 @@ public class BioControl {
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("http://<DEVICE_IP>/api/light"))
+            .uri(URI.create("http://&lt;ip_dispositivo&gt;/api/light"))
             .header("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString(json))
             .build();
@@ -174,7 +330,7 @@ var payload = new { r = 255, g = 100, b = 50, intensity = 100 };
 var json = JsonSerializer.Serialize(payload);
 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-var response = await client.PostAsync("http://<DEVICE_IP>/api/light", content);
+var response = await client.PostAsync("http://&lt;ip_dispositivo&gt;/api/light", content);
 Console.WriteLine(await response.Content.ReadAsStringAsync());</code></pre>
                     </div>
 
@@ -190,7 +346,7 @@ interface LightConfig {
 
 const config: LightConfig = { r: 255, g: 100, b: 50, intensity: 100 };
 
-axios.post('http://<DEVICE_IP>/api/light', config)
+axios.post('http://&lt;ip_dispositivo&gt;/api/light', config)
     .then(res => console.log(res.data));</code></pre>
                     </div>
 
@@ -205,7 +361,7 @@ import (
 
 func main() {
     json := []byte(`{"r":255,"g":100,"b":50,"intensity":100}`)
-    resp, err := http.Post("http://<DEVICE_IP>/api/light", "application/json", bytes.NewBuffer(json))
+    resp, err := http.Post("http://&lt;ip_dispositivo&gt;/api/light", "application/json", bytes.NewBuffer(json))
     if err != nil {
         panic(err)
     }
@@ -229,7 +385,7 @@ int main() {
         struct curl_slist *headers = NULL;
         headers = curl_slist_append(headers, "Content-Type: application/json");
 
-        curl_easy_setopt(curl, CURLOPT_URL, "http://<DEVICE_IP>/api/light");
+        curl_easy_setopt(curl, CURLOPT_URL, "http://&lt;ip_dispositivo&gt;/api/light");
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "{\"r\":255,\"g\":100,\"b\":50,\"intensity\":100}");
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
@@ -243,7 +399,7 @@ int main() {
 
                     <div class="tab-content" data-lang="php">
 <pre><code class="language-php"><?php
-$url = 'http://<DEVICE_IP>/api/light';
+$url = 'http://&lt;ip_dispositivo&gt;/api/light';
 $data = array('r' => 255, 'g' => 100, 'b' => 50, 'intensity' => 100);
 
 $ch = curl_init($url);
@@ -260,7 +416,7 @@ echo $result;
                     <div class="tab-content" data-lang="swift">
 <pre><code class="language-swift">import Foundation
 
-let url = URL(string: "http://<DEVICE_IP>/api/light")!
+let url = URL(string: "http://&lt;ip_dispositivo&gt;/api/light")!
 var request = URLRequest(url: url)
 request.httpMethod = "POST"
 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -291,7 +447,7 @@ int main(void) {
         struct curl_slist *headers = NULL;
         headers = curl_slist_append(headers, "Content-Type: application/json");
 
-        curl_easy_setopt(curl, CURLOPT_URL, "http://<DEVICE_IP>/api/light");
+        curl_easy_setopt(curl, CURLOPT_URL, "http://&lt;ip_dispositivo&gt;/api/light");
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "{\"r\":255,\"g\":100,\"b\":50,\"intensity\":100}");
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
@@ -310,7 +466,7 @@ int main(void) {
 
     <!-- IAShaker Section -->
     <section>
-        <h2>IAShakerV2 API</h2>
+        <h2>BioShaker API</h2>
 
         <!-- GET /rpm -->
         <div class="endpoint">
@@ -336,6 +492,151 @@ int main(void) {
                         <td>Target RPM value</td>
                     </tr>
                 </table>
+
+                <h4 data-site-lang="en">Code Examples</h4>
+                <h4 data-site-lang="es" style="display:none;">Ejemplos de Código</h4>
+
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="python">Python</button>
+                        <button class="tab-btn" data-tab="js">JavaScript</button>
+                        <button class="tab-btn" data-tab="java">Java</button>
+                        <button class="tab-btn" data-tab="csharp">C#</button>
+                        <button class="tab-btn" data-tab="ts">TypeScript</button>
+                        <button class="tab-btn" data-tab="go">Go</button>
+                        <button class="tab-btn" data-tab="cpp">C++</button>
+                        <button class="tab-btn" data-tab="php">PHP</button>
+                        <button class="tab-btn" data-tab="swift">Swift</button>
+                        <button class="tab-btn" data-tab="c">C</button>
+                    </div>
+
+                    <div class="tab-content active" data-lang="python">
+<pre><code class="language-python">import requests
+
+url = "http://&lt;ip_dispositivo&gt;/rpm?value=100"
+response = requests.get(url)
+print(response.status_code)</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="js">
+<pre><code class="language-javascript">const url = "http://&lt;ip_dispositivo&gt;/rpm?value=100";
+
+fetch(url)
+.then(res => console.log(res.status));</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="java">
+<pre><code class="language-java">import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+
+public class BioControl {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("http://&lt;ip_dispositivo&gt;/rpm?value=100"))
+            .GET()
+            .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.statusCode());
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="csharp">
+<pre><code class="language-csharp">using System.Net.Http;
+
+var client = new HttpClient();
+var response = await client.GetAsync("http://&lt;ip_dispositivo&gt;/rpm?value=100");
+Console.WriteLine(response.StatusCode);</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="ts">
+<pre><code class="language-typescript">import axios from 'axios';
+
+axios.get('http://&lt;ip_dispositivo&gt;/rpm?value=100')
+    .then(res => console.log(res.status));</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="go">
+<pre><code class="language-go">package main
+
+import (
+    "net/http"
+    "fmt"
+)
+
+func main() {
+    resp, err := http.Get("http://&lt;ip_dispositivo&gt;/rpm?value=100")
+    if err != nil {
+        panic(err)
+    }
+    defer resp.Body.Close()
+    fmt.Println("Status:", resp.Status)
+}</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="cpp">
+<pre><code class="language-cpp">#include <curl/curl.h>
+
+int main() {
+    CURL *curl;
+    CURLcode res;
+
+    curl_global_init(CURL_GLOBAL_ALL);
+    curl = curl_easy_init();
+
+    if(curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, "http://&lt;ip_dispositivo&gt;/rpm?value=100");
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+    }
+    return 0;
+}</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="php">
+<pre><code class="language-php"><?php
+$url = 'http://&lt;ip_dispositivo&gt;/rpm?value=100';
+echo file_get_contents($url);
+?></code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="swift">
+<pre><code class="language-swift">import Foundation
+
+let url = URL(string: "http://&lt;ip_dispositivo&gt;/rpm?value=100")!
+let task = URLSession.shared.dataTask(with: url) { _, response, _ in
+    if let httpResponse = response as? HTTPURLResponse {
+        print(httpResponse.statusCode)
+    }
+}
+task.resume()</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="c">
+<pre><code class="language-c">#include <stdio.h>
+#include <curl/curl.h>
+
+int main(void) {
+    CURL *curl;
+    CURLcode res;
+
+    curl_global_init(CURL_GLOBAL_ALL);
+    curl = curl_easy_init();
+
+    if(curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, "http://&lt;ip_dispositivo&gt;/rpm?value=100");
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+    }
+    curl_global_cleanup();
+    return 0;
+}</code></pre>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -358,6 +659,155 @@ int main(void) {
   "ip": "192.168.1.50",
   "mode": "Running"
 }</code></pre>
+
+                <h4 data-site-lang="en">Code Examples</h4>
+                <h4 data-site-lang="es" style="display:none;">Ejemplos de Código</h4>
+
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="python">Python</button>
+                        <button class="tab-btn" data-tab="js">JavaScript</button>
+                        <button class="tab-btn" data-tab="java">Java</button>
+                        <button class="tab-btn" data-tab="csharp">C#</button>
+                        <button class="tab-btn" data-tab="ts">TypeScript</button>
+                        <button class="tab-btn" data-tab="go">Go</button>
+                        <button class="tab-btn" data-tab="cpp">C++</button>
+                        <button class="tab-btn" data-tab="php">PHP</button>
+                        <button class="tab-btn" data-tab="swift">Swift</button>
+                        <button class="tab-btn" data-tab="c">C</button>
+                    </div>
+
+                    <div class="tab-content active" data-lang="python">
+<pre><code class="language-python">import requests
+
+url = "http://&lt;ip_dispositivo&gt;/status"
+response = requests.get(url)
+print(response.json())</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="js">
+<pre><code class="language-javascript">const url = "http://&lt;ip_dispositivo&gt;/status";
+
+fetch(url)
+.then(res => res.json())
+.then(data => console.log(data));</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="java">
+<pre><code class="language-java">import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+
+public class BioControl {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("http://&lt;ip_dispositivo&gt;/status"))
+            .GET()
+            .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="csharp">
+<pre><code class="language-csharp">using System.Net.Http;
+
+var client = new HttpClient();
+var response = await client.GetAsync("http://&lt;ip_dispositivo&gt;/status");
+Console.WriteLine(await response.Content.ReadAsStringAsync());</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="ts">
+<pre><code class="language-typescript">import axios from 'axios';
+
+axios.get('http://&lt;ip_dispositivo&gt;/status')
+    .then(res => console.log(res.data));</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="go">
+<pre><code class="language-go">package main
+
+import (
+    "net/http"
+    "fmt"
+    "io/ioutil"
+)
+
+func main() {
+    resp, err := http.Get("http://&lt;ip_dispositivo&gt;/status")
+    if err != nil {
+        panic(err)
+    }
+    defer resp.Body.Close()
+    body, _ := ioutil.ReadAll(resp.Body)
+    fmt.Println(string(body))
+}</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="cpp">
+<pre><code class="language-cpp">#include <curl/curl.h>
+#include <string>
+
+int main() {
+    CURL *curl;
+    CURLcode res;
+
+    curl_global_init(CURL_GLOBAL_ALL);
+    curl = curl_easy_init();
+
+    if(curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, "http://&lt;ip_dispositivo&gt;/status");
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+    }
+    return 0;
+}</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="php">
+<pre><code class="language-php"><?php
+$url = 'http://&lt;ip_dispositivo&gt;/status';
+echo file_get_contents($url);
+?></code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="swift">
+<pre><code class="language-swift">import Foundation
+
+let url = URL(string: "http://&lt;ip_dispositivo&gt;/status")!
+let task = URLSession.shared.dataTask(with: url) { data, _, _ in
+    if let data = data {
+        print(String(data: data, encoding: .utf8)!)
+    }
+}
+task.resume()</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-lang="c">
+<pre><code class="language-c">#include <stdio.h>
+#include <curl/curl.h>
+
+int main(void) {
+    CURL *curl;
+    CURLcode res;
+
+    curl_global_init(CURL_GLOBAL_ALL);
+    curl = curl_easy_init();
+
+    if(curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, "http://&lt;ip_dispositivo&gt;/status");
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+    }
+    curl_global_cleanup();
+    return 0;
+}</code></pre>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
